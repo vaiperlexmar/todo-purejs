@@ -39,13 +39,43 @@ modalCloseBtn.addEventListener("click", () => {
   container.classList.remove("blur-filter");
 });
 
-// Get tasks from DB
-const taskList = document.querySelector(".task-list__tasks");
+// Get tasks from DB and setting to task lists
+const overdueTasks = document.querySelector(".sublist_overdue");
+const todayTasks = document.querySelector(".sublist_today");
+const tomorrowTasks = document.querySelector(".sublist_tomorrow");
+const futureTasks = document.querySelector(".sublist_future");
+
+const todayStartDay = new Date();
+todayStartDay.setHours(0);
+todayStartDay.setMinutes(0);
+
+const todayFinishDay = new Date();
+todayFinishDay.setHours(23);
+todayFinishDay.setMinutes(59);
 
 getTasks(db).then((tasks) => {
   tasks.map((task) => {
-    taskList.appendChild(
-      createTask(task["text"], "2", "1", task["isCompleted"])
-    );
+    const taskTimestamp = task.date.seconds * 1000;
+    const startTodayTimestamp = todayStartDay.getTime();
+    const finishTodayTimestamp = todayFinishDay.getTime();
+
+    let newTask = createTask(task.text, taskTimestamp, task.isComplete);
+
+    // for today
+    if (
+      taskTimestamp >= startTodayTimestamp &&
+      taskTimestamp <= finishTodayTimestamp
+    ) {
+      todayTasks.appendChild(newTask);
+    } else if (taskTimestamp < startTodayTimestamp) {
+      overdueTasks.appendChild(newTask);
+    } else if (
+      taskTimestamp > finishTodayTimestamp &&
+      taskTimestamp - finishTodayTimestamp < 86400000
+    ) {
+      tomorrowTasks.appendChild(newTask);
+    } else {
+      futureTasks.appendChild(newTask);
+    }
   });
 });

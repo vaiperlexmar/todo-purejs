@@ -82,15 +82,23 @@
                 <button class="btn task-list__add-btn"></button>
               </header>
 
-              <ul class="task-list__tasks">
-                <li class="task">
-                  <input
-                    class="task__checkbox"
-                    type="checkbox"
-                    name="isCompleted"
-                  />
-                  <p class="task__content">Cook Rice and Chicken at 10 am</p>
-                </li>
+              <ul class="task-list__lists">
+                <ul
+                  class="task-list__sublist sublist_overdue"
+                  aria-label="Overdue"
+                ></ul>
+                <ul
+                  class="task-list__sublist sublist_today"
+                  aria-label="Today"
+                ></ul>
+                <ul
+                  class="task-list__sublist sublist_tomorrow"
+                  aria-label="Tomorrow"
+                ></ul>
+                <ul
+                  class="task-list__sublist sublist_future"
+                  aria-label="Future"
+                ></ul>
               </ul>
             </div>
           </div>

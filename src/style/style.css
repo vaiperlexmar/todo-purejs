@@ -208,9 +208,22 @@ body {
   background-color: white;
 }
 
+/* UNDERSTAND WHERE TO USE THIS STYLES */
+
 .task-list__tasks {
   overflow-y: scroll;
   height: 20vh;
+}
+
+.task-list__sublist:before {
+  content: attr(aria-label);
+  font-size: var(--fs-6);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 1rem;
 }
 
 /* Task */

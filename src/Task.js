@@ -1,8 +1,15 @@
 "use strict";
 
-export default function createTask(text, date, time, isCompleted) {
+export default function createTask(text, timestamp, isCompleted) {
+  let date = new Date(timestamp);
+
+  let dataAttrDate = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+  let dataAttrTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
   const listEl = document.createElement("li");
   listEl.classList.add("task");
+  listEl.dataset.date = dataAttrDate;
+  listEl.dataset.time = dataAttrTime;
 
   const checkboxEl = document.createElement("input");
   checkboxEl.type = "checkbox";
