@@ -282,8 +282,18 @@ body {
 
 .modal__input {
   display: block;
+  width: 80%;
   margin: 0 auto 1.5rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.modal__input-label {
+  text-align: start;
+  display: block;
+  width: 80%;
+  margin: 0 auto 0.5rem;
+  font-weight: 500;
+  font-size: var(--fs-7);
 }
 
 .modal__timepicker {

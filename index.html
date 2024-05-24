@@ -23,31 +23,42 @@
             <span class="material-symbols-outlined"> close </span>
           </button>
         </header>
-        <input
-          class="modal__input modal__task-name"
-          type="text"
-          name="task-name"
-          placeholder="Type your task..."
-        />
-        <input
-          class="modal__input modal__datepicker"
-          type="text"
-          name="task-date"
-          placeholder="Select Date..."
-        />
+        <form action="">
+          <label for="task-name" class="modal__input-label">
+            Write your task
+          </label>
 
-        <input
-          class="modal__input modal__timepicker"
-          type="text"
-          name="task-time"
-          placeholder="Select Time..."
-        />
+          <input
+            class="modal__input modal__task-name"
+            type="text"
+            name="task-name"
+          />
 
-        <input
-          class="btn modal__input modal__submit"
-          type="button"
-          value="Submit"
-        />
+          <label for="task-name" class="modal__input-label">
+            Select the date
+          </label>
+
+          <input
+            class="modal__input modal__datepicker"
+            type="text"
+            name="task-date"
+          />
+
+          <label for="task-name" class="modal__input-label">
+            Select the time
+          </label>
+          <input
+            class="modal__input modal__timepicker"
+            type="text"
+            name="task-time"
+          />
+
+          <input
+            class="btn modal__input modal__submit"
+            type="button"
+            value="Submit"
+          />
+        </form>
       </div>
 
       <div class="container">
@@ -106,7 +117,8 @@
       </div>
     </div>
     <script type="module" src="/src/db.js"></script>
-    <script type="module" src="/src/index.js"></script>
     <script type="module" src="/src/clock.js"></script>
+    <script type="module" src="/src/modal.js"></script>
+    <script type="module" src="/src/index.js"></script>
   </body>
 </html>
