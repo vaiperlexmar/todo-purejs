@@ -69,20 +69,15 @@ async function addNewTask(event) {
     ).getTime();
 
 
-    // собираем данные с инпутов в объект
-
-    // создаем таску и добавляем в список distributeTask
-    const newTaskEl = createTask(modalTaskInput.value, timeStamp, false);
-    distributeTask(newTaskEl, timeStamp);
-
-    // передаем в БД
-
-    await addDoc(collection(db, "tasks"), {
+    const docRef = await addDoc(collection(db, "tasks"), {
         text: modalTaskInput.value,
         date: new Date(timeStamp),
         isComplete: false,
     });
 
+    const newTaskEl = createTask(modalTaskInput.value, timeStamp, false, docRef.id);
+    distributeTask(newTaskEl, timeStamp);
+    
     closeModal();
 }
 
