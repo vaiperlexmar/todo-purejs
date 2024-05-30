@@ -71,7 +71,7 @@
             />
             <p class="profile__name">Monica Gamage</p>
             <p class="profile__username">@monicagamage</p>
-            <button class="btn profile__logout">Log Out</button>
+            <button class="btn btn_orange profile__logout">Log Out</button>
           </div>
         </header>
         <main>
@@ -90,6 +90,11 @@
             <div class="task-list">
               <header class="task-list__header">
                 <h3 class="task-list__heading">Tasks List</h3>
+                <button
+                  class="btn btn_orange-borded task-list__complete-switcher"
+                >
+                  Completed
+                </button>
                 <button class="btn task-list__add-btn"></button>
               </header>
 
@@ -110,6 +115,11 @@
                   class="task-list__sublist sublist_future"
                   aria-label="Future"
                 ></ul>
+
+                <ul
+                  class="task-list__sublist sublist_completed"
+                  aria-label="Completed"
+                ></ul>
               </ul>
             </div>
           </div>
@@ -119,6 +129,7 @@
     <script type="module" src="/src/db.js"></script>
     <script type="module" src="/src/clock.js"></script>
     <script type="module" src="/src/modal.js"></script>
+    <script type="module" src="/src/openCompleted.js"></script>
     <script type="module" src="/src/index.js"></script>
   </body>
 </html>

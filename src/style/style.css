@@ -48,6 +48,16 @@ body {
   background: transparent;
 }
 
+.btn_orange {
+  padding: 0.5rem 2.4rem;
+  background-color: var(--main-orange);
+}
+
+.btn_orange-borded {
+  padding: 0.5rem 2.4rem;
+  border: 1px solid var(--main-orange);
+}
+
 /* Header */
 
 .header {
@@ -83,11 +93,6 @@ body {
   margin-bottom: 1.2rem;
   color: var(--accent-orange);
   font-weight: 500;
-}
-
-.profile__logout {
-  padding: 0.5rem 2.4rem;
-  background-color: var(--main-orange);
 }
 
 /* Clock */
@@ -208,6 +213,14 @@ body {
   background-color: white;
 }
 
+.task-list__complete-switcher {
+  transition: 0.2s all;
+}
+
+.task-list__complete-switcher.active {
+  background-color: var(--main-orange);
+}
+
 /* UNDERSTAND WHERE TO USE THIS STYLES */
 
 .task-list__tasks {
@@ -226,6 +239,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.sublist_completed {
+  display: none;
+}
+
 /* Task */
 
 .task {
@@ -233,6 +250,10 @@ body {
   align-items: center;
   gap: 1.1rem;
   margin-bottom: 1.8rem;
+}
+
+.task_completed {
+  text-decoration: line-through;
 }
 
 .task__content {

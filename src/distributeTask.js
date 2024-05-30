@@ -4,6 +4,7 @@ const overdueTasks = document.querySelector(".sublist_overdue");
 const todayTasks = document.querySelector(".sublist_today");
 const tomorrowTasks = document.querySelector(".sublist_tomorrow");
 const futureTasks = document.querySelector(".sublist_future");
+const completedTasks = document.querySelector(".sublist_completed");
 
 const todayStartDay = new Date();
 todayStartDay.setHours(0);
@@ -17,7 +18,9 @@ function distributeTask(newTask, newTaskTimestamp) {
   const startTodayTimestamp = todayStartDay.getTime();
   const finishTodayTimestamp = todayFinishDay.getTime();
 
-  if (
+  if (newTask.dataset.isCompleted === "true") {
+    completedTasks.prepend(newTask);
+  } else if (
     newTaskTimestamp >= startTodayTimestamp &&
     newTaskTimestamp <= finishTodayTimestamp
   ) {

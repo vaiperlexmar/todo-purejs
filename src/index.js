@@ -12,7 +12,7 @@ getTasks(db).then((tasks) => {
     const newTask = createTask(
       task.text,
       taskTimestamp,
-      task.isComplete,
+      task.isCompleted,
       task.id
     );
 

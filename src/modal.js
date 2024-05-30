@@ -72,7 +72,7 @@ async function addNewTask(event) {
   await setDoc(doc(db, "tasks", id), {
     text: modalTaskInput.value,
     date: new Date(timeStamp),
-    isComplete: false,
+    isCompleted: false,
     id: id,
   });
 
