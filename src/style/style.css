@@ -250,6 +250,7 @@ body {
   align-items: center;
   gap: 1.1rem;
   margin-bottom: 1.8rem;
+  position: relative;
 }
 
 .task_completed {
@@ -267,6 +268,39 @@ body {
   width: 1.7rem;
   height: 1.7rem;
   accent-color: var(--accent-green);
+}
+
+.task__option-block {
+  position: absolute;
+  display: flex;
+  gap: 1.5rem;
+  right: 0;
+}
+
+.task__option-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.task__delete-btn {
+  background-image: url("/src/assets/delete.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.task__sure-btn_yes {
+  background-image: url("/src/assets/check.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.task__edit-btn {
+  background-image: url("/src/assets/edit.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Modal */

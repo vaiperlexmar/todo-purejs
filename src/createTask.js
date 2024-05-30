@@ -1,8 +1,14 @@
 "use strict";
 
-import { doc, updateDoc } from "firebase/firestore/lite";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
 import { db } from "./db.js";
 import distributeTask from "./distributeTask.js";
+
+async function deleteTask() {
+  const task = this.parentElement.parentElement;
+  await deleteDoc(doc(db, "tasks", task.dataset.id));
+  task.remove();
+}
 
 const makeComplete = async function () {
   const taskEl = this.parentElement;
@@ -26,6 +32,10 @@ const makeComplete = async function () {
 };
 
 export default function createTask(text, timestamp, isCompleted, id) {
+  // =====================================
+  //      Creating base of task
+  // =====================================
+
   const listEl = document.createElement("li");
   listEl.classList.add("task");
   listEl.dataset.id = id;
@@ -48,8 +58,62 @@ export default function createTask(text, timestamp, isCompleted, id) {
   textEl.textContent = text;
   textEl.classList.add("task__content");
 
+  // =====================================
+  //      Option block logic
+  // =====================================
+
+  const optionsBlock = document.createElement("div");
+  const deleteBtn = document.createElement("button");
+  const editBtn = document.createElement("button");
+
+  optionsBlock.classList.add("task__option-block");
+  deleteBtn.classList.add("btn", "task__option-btn", "task__delete-btn");
+  editBtn.classList.add("btn", "task__option-btn", "task__edit-btn");
+
+  // -------------------------------------
+  //      Delete button logic
+  // -------------------------------------
+
+  deleteBtn.addEventListener("click", async function () {
+    deleteBtn.classList.remove("task__delete-btn", "rev-rotate-sure-yes");
+    deleteBtn.classList.add("rotate-sure-yes");
+
+    editBtn.classList.remove("task__edit-btn", "rev-rotate-sure-no");
+    editBtn.classList.add("rotate-sure-no");
+
+    // REMOVE EVENTLISTENER OF EDIT BUTTON
+
+    // Cancel of deleting
+    editBtn.addEventListener("click", () => {
+      deleteBtn.classList.remove("rotate-sure-yes");
+      deleteBtn.classList.add("rev-rotate-sure-yes");
+      setTimeout(() => {
+        deleteBtn.classList.add("task__delete-btn");
+      }, 500);
+      deleteBtn.removeEventListener("click", deleteTask);
+
+      // Add its event listener
+      editBtn.classList.remove("rotate-sure-no");
+      editBtn.classList.add("rev-rotate-sure-no");
+      setTimeout(() => {
+        editBtn.classList.add("task__edit-btn");
+      }, 500);
+    });
+
+    // Approve of deleting
+    deleteBtn.addEventListener("click", deleteTask);
+  });
+
+  optionsBlock.appendChild(deleteBtn);
+  optionsBlock.appendChild(editBtn);
+
+  // =====================================
+  //      Add elements to task
+  // =====================================
+
   listEl.appendChild(checkboxEl);
   listEl.appendChild(textEl);
+  listEl.appendChild(optionsBlock);
 
   return listEl;
 }
