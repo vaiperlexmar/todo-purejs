@@ -3,13 +3,13 @@
 import { doc, deleteDoc } from "firebase/firestore/lite";
 import { db } from "./db.js";
 
-const makeComplete = function () {
-  console.log(this.getAttribute("data-id"));
+const makeComplete = async function () {
+  await deleteDoc(doc(db, "tasks", this.parentElement.dataset.id));
+
+  this.parentElement.remove();
 };
 
 export default function createTask(text, timestamp, isCompleted, id) {
-  let date = new Date(timestamp);
-
   const listEl = document.createElement("li");
   listEl.classList.add("task");
   listEl.dataset.id = id;
