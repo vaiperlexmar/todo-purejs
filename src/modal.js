@@ -64,23 +64,36 @@ const submitBtn = document.querySelector(".modal__submit");
 async function addNewTask(event) {
   event.preventDefault();
 
-  const timeStamp = new Date(
-    datePickerEl.value + " " + timePickerEl.value
-  ).getTime();
-  const id = Date.now().toString();
+  try {
+    const timeStamp = new Date(
+      datePickerEl.value + " " + timePickerEl.value
+    ).getTime();
 
-  await setDoc(doc(db, "tasks", id), {
-    text: modalTaskInput.value,
-    date: new Date(timeStamp),
-    isCompleted: false,
-    id: id,
-  });
+    if (isNaN(timeStamp)) {
+      throw new Error("Invalid date or time input");
+    }
 
-  const newTaskEl = createTask(modalTaskInput.value, timeStamp, false, id);
+    const id = Date.now().toString();
 
-  distributeTask(newTaskEl, timeStamp);
+    await setDoc(doc(db, "tasks", id), {
+      text: modalTaskInput.value,
+      date: new Date(timeStamp),
+      isCompleted: false,
+      id: id,
+    });
 
-  closeModal();
+    const newTaskEl = createTask(modalTaskInput.value, timeStamp, false, id);
+
+    if (!newTaskEl) {
+      throw new Error("Failed to create new task element");
+    }
+
+    distributeTask(newTaskEl, timeStamp);
+
+    closeModal();
+  } catch (err) {
+    console.error("Error with adding new task: ", err.message);
+  }
 }
 
 submitBtn.addEventListener("click", addNewTask);

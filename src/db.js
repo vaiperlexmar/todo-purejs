@@ -15,13 +15,17 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 async function getTasks(db) {
-  const tasksCol = collection(db, "tasks");
-  const taskSnapshot = await getDocs(tasksCol);
-  const taskList = taskSnapshot.docs.map((task) => {
-    return task.data();
-  });
+  try {
+    const tasksCol = collection(db, "tasks");
+    const taskSnapshot = await getDocs(tasksCol);
+    const taskList = taskSnapshot.docs.map((task) => {
+      return task.data();
+    });
 
-  return taskList;
+    return taskList;
+  } catch (err) {
+    console.error("Error with getting data for db:", err.message);
+  }
 }
 
 export { db, getTasks };

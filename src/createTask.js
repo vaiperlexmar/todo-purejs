@@ -6,7 +6,11 @@ import distributeTask from "./distributeTask.js";
 
 async function deleteTask() {
   const task = this.parentElement.parentElement;
-  await deleteDoc(doc(db, "tasks", task.dataset.id));
+  try {
+    await deleteDoc(doc(db, "tasks", task.dataset.id));
+  } catch (err) {
+    console.error("Error with deleting task:", err.message);
+  }
   task.remove();
 }
 
@@ -14,20 +18,24 @@ const makeComplete = async function () {
   const taskEl = this.parentElement;
   const taskRef = doc(db, "tasks", this.parentElement.dataset.id);
 
-  if (this.checked) {
-    await updateDoc(taskRef, { isCompleted: true });
-    taskEl.dataset.isCompleted = true;
+  try {
+    if (this.checked) {
+      await updateDoc(taskRef, { isCompleted: true });
+      taskEl.dataset.isCompleted = true;
 
-    taskEl.remove();
-    distributeTask(taskEl, taskEl.dataset.timestamp);
-    taskEl.classList.add("task_completed");
-  } else {
-    await updateDoc(taskRef, { isCompleted: false });
-    taskEl.dataset.isCompleted = false;
+      taskEl.remove();
+      distributeTask(taskEl, taskEl.dataset.timestamp);
+      taskEl.classList.add("task_completed");
+    } else {
+      await updateDoc(taskRef, { isCompleted: false });
+      taskEl.dataset.isCompleted = false;
 
-    taskEl.remove();
-    distributeTask(taskEl, taskEl.dataset.timestamp);
-    taskEl.classList.remove("task_completed");
+      taskEl.remove();
+      distributeTask(taskEl, taskEl.dataset.timestamp);
+      taskEl.classList.remove("task_completed");
+    }
+  } catch (err) {
+    console.log("Error with making task completed:", err.message);
   }
 };
 
