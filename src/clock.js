@@ -1,22 +1,36 @@
 "use strict";
 
-const hourArrow = document.getElementById("clock-hour");
-const minuteArrow = document.getElementById("clock-minute");
-const secondArrow = document.getElementById("clock-second");
+function clockAnimation() {
+  const hourArrow = document.getElementById("clock-hour");
+  const minuteArrow = document.getElementById("clock-minute");
+  const secondArrow = document.getElementById("clock-second");
 
-setInterval(() => {
-  const d = new Date(); //object of date()
-  const hr = d.getHours();
-  const min = d.getMinutes();
-  const sec = d.getSeconds();
-  const hr_rotation = 30 * hr + min / 2; //converting current time
-  const min_rotation = 6 * min;
-  const sec_rotation = 6 * sec;
+  setInterval(() => {
+    const d = new Date(); //object of date()
+    const hr = d.getHours();
+    const min = d.getMinutes();
+    const sec = d.getSeconds();
+    const hr_rotation = 30 * hr + min / 2; //converting current time
+    const min_rotation = 6 * min;
+    const sec_rotation = 6 * sec;
 
-  hourArrow.style.transform = `rotate(${hr_rotation}deg)`;
-  minuteArrow.style.transform = `rotate(${min_rotation}deg)`;
-  secondArrow.style.transform = `rotate(${sec_rotation}deg)`;
-}, 1000);
+    hourArrow.style.transform = `rotate(${hr_rotation}deg)`;
+    minuteArrow.style.transform = `rotate(${min_rotation}deg)`;
+    secondArrow.style.transform = `rotate(${sec_rotation}deg)`;
+  }, 1000);
+}
+
+function runScriptOnTargetPage() {
+  const targetPath = "/app.html";
+
+  if (window.location.pathname === targetPath) {
+    clockAnimation();
+  }
+}
+
+window.addEventListener("load", runScriptOnTargetPage);
+window.addEventListener("popstate", runScriptOnTargetPage);
+window.addEventListener("hashchange", runScriptOnTargetPage);
 
 const clockGreeting = document.querySelector(".clock__greeting");
 const todayTasksElement = document.querySelector(".sublist_today");
