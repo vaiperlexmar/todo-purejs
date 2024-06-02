@@ -58,6 +58,45 @@ body {
   border: 1px solid var(--main-orange);
 }
 
+.btn_orange-gradient {
+  position: relative;
+  background: linear-gradient(45deg, var(--main-orange), var(--accent-orange));
+  padding: 1.7rem 11.7rem;
+  font-size: var(--fs-5);
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transition: 0.2s all;
+}
+
+.btn_orange-gradient:active {
+  transform: scale(0.97);
+  background: linear-gradient(75deg, var(--main-orange), var(--accent-orange));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn__arrow {
+  position: absolute;
+  transform: translate(-50%, 50%);
+  right: 23%;
+}
+
+.subheading {
+  font-size: var(--fs-5);
+}
+
+.heading__secondary {
+  font-size: var(--fs-2);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.paragraph {
+  font-size: var(--fs-7);
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.75);
+}
+
 /* Header */
 
 .header {
@@ -359,4 +398,31 @@ body {
   width: 50%;
   background-color: var(--accent-orange);
   color: white;
+}
+
+/* *********** AUTH *********** */
+
+.auth__container {
+  background-color: rgba(244, 194, 127, 0.67);
+  text-align: center;
+  padding-top: 11.6rem;
+  padding-bottom: 9.6rem;
+}
+
+.auth__textbox {
+  margin-bottom: 11.9rem;
+  padding: 0 4.7rem;
+}
+
+.welcome__text .heading__secondary {
+  margin-bottom: 2.4rem;
+}
+
+.registration__text,
+.signin__text {
+  display: none;
+}
+
+.registration__text .heading__secondary {
+  margin-bottom: 1.3rem;
 }

@@ -3,133 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-Do List on JS</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-    />
+    <title>Sign Up to-do!</title>
     <link rel="stylesheet" href="/src/style/style.css" />
   </head>
   <body>
-    <div id="app">
-      <div class="modal">
-        <header class="modal__header">
-          <h2 class="modal__heading">Add new task</h2>
-          <button class="btn modal__close">
-            <span class="material-symbols-outlined"> close </span>
-          </button>
-        </header>
-        <form action="" class="modal__new-task-form">
-          <label for="task-name" class="modal__input-label">
-            Write your task
-          </label>
+    <div class="auth__container">
+      <img src="/src/assets/auth/Done.png" alt="" />
 
-          <input
-            class="modal__input modal__task-name"
-            type="text"
-            name="task-name"
-          />
+      <div class="auth__textbox">
+        <div class="welcome__text">
+          <p class="subheading">Welcome to</p>
+          <h2 class="heading__secondary">OUR REMINDER</h2>
 
-          <label for="task-name" class="modal__input-label">
-            Select the date
-          </label>
+          <p class="paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum
+            dictum tempus, interdum at dignissim metus. Ultricies sed nunc.
+          </p>
+        </div>
+        <div class="registration__text">
+          <h2 class="heading__secondary">
+            Get’s things done <br />
+            with TODO
+          </h2>
+          <p class="paragraph">Let’s help you meet up your tasks</p>
+        </div>
 
-          <input
-            class="modal__input modal__datepicker"
-            type="text"
-            name="task-date"
-          />
-
-          <label for="task-name" class="modal__input-label">
-            Select the time
-          </label>
-          <input
-            class="modal__input modal__timepicker"
-            type="text"
-            name="task-time"
-          />
-
-          <input
-            class="btn modal__input modal__submit"
-            type="button"
-            value="Submit"
-          />
-        </form>
+        <div class="signin__text">
+          <p class="subheading">
+            Welcome back <br />
+            to
+          </p>
+          <h2 class="heading__secondary">OUR REMINDER</h2>
+        </div>
       </div>
 
-      <div class="container">
-        <header class="header">
-          <div class="profile">
-            <img
-              class="profile__img"
-              src="/src/assets/Ellipse 2(1).png"
-              alt=""
-            />
-            <p class="profile__name">Monica Gamage</p>
-            <p class="profile__username">@monicagamage</p>
-            <button class="btn btn_orange profile__logout">Log Out</button>
-          </div>
-        </header>
-        <main>
-          <div class="clock">
-            <div class="clock__face" id="clock-container">
-              <div class="clock__arrow" id="clock-hour"></div>
-              <div class="clock__arrow" id="clock-minute"></div>
-              <div class="clock__arrow" id="clock-second"></div>
-              <div class="clock__circle"></div>
-            </div>
-            <p class="clock__greeting">Good Afternoon</p>
-          </div>
-          <div class="task-list__container">
-            <h2 class="task-list__section-heading">Task List</h2>
+      <form action=""></form>
 
-            <div class="task-list">
-              <header class="task-list__header">
-                <h3 class="task-list__heading">Tasks List</h3>
-                <button
-                  class="btn btn_orange-borded task-list__complete-switcher"
-                >
-                  Completed
-                </button>
-                <button class="btn task-list__add-btn"></button>
-              </header>
-
-              <ul class="task-list__lists">
-                <ul
-                  class="task-list__sublist sublist_overdue"
-                  aria-label="Overdue"
-                ></ul>
-                <ul
-                  class="task-list__sublist sublist_today"
-                  aria-label="Today"
-                ></ul>
-                <ul
-                  class="task-list__sublist sublist_tomorrow"
-                  aria-label="Tomorrow"
-                ></ul>
-                <ul
-                  class="task-list__sublist sublist_future"
-                  aria-label="Future"
-                ></ul>
-
-                <ul
-                  class="task-list__sublist sublist_completed"
-                  aria-label="Completed"
-                ></ul>
-              </ul>
-            </div>
-          </div>
-        </main>
-      </div>
+      <button class="btn btn_orange-gradient" id="get-start">
+        Get Start
+        <img class="btn__arrow" src="/src/assets/auth/arrow.svg" alt="" />
+      </button>
     </div>
-    <script type="module" src="/src/db.js"></script>
-    <script type="module" src="/src/clock.js"></script>
-    <script type="module" src="/src/modal.js"></script>
-    <script type="module" src="/src/openCompleted.js"></script>
+    <script type="module" src="/src/auth.js"></script>
     <script type="module" src="/src/index.js"></script>
   </body>
 </html>
