@@ -41,7 +41,3 @@ auth.onAuthStateChanged(function (user) {
     }
   }
 });
-
-const user = auth.currentUser;
-
-// Get tasks from DB and setting to task lists

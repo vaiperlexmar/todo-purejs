@@ -1,7 +1,7 @@
 "use strict";
 
-import { db } from "./setupFirebase";
-import { doc, setDoc } from "firebase/firestore/lite";
+import { db, auth } from "./setupFirebase";
+import { doc, setDoc } from "firebase/firestore";
 import flatpickr from "flatpickr";
 import createTask from "./createTask";
 import distributeTask from "./distributeTask";
@@ -61,39 +61,46 @@ addBtn.addEventListener("click", () => {
 
 const submitBtn = document.querySelector(".modal__submit");
 
-async function addNewTask(event) {
-  event.preventDefault();
+auth.onAuthStateChanged((user) => {
+  async function addNewTask(event) {
+    event.preventDefault();
 
-  try {
-    const timeStamp = new Date(
-      datePickerEl.value + " " + timePickerEl.value
-    ).getTime();
+    try {
+      const timestamp = new Date(
+        datePickerEl.value + " " + timePickerEl.value
+      ).getTime();
 
-    if (isNaN(timeStamp)) {
-      throw new Error("Invalid date or time input");
+      if (isNaN(timestamp)) {
+        throw new Error("Invalid date or time input");
+      }
+
+      const taskRef = doc(db, "users", user.uid, "tasks", timestamp.toString());
+
+      await setDoc(taskRef, {
+        text: modalTaskInput.value,
+        date: new Date(timestamp),
+        isCompleted: false,
+        id: Date.now(),
+      });
+
+      const newTaskEl = createTask(
+        modalTaskInput.value,
+        timestamp,
+        false,
+        Date.now()
+      );
+
+      if (!newTaskEl) {
+        throw new Error("Failed to create new task element");
+      }
+
+      distributeTask(newTaskEl, timestamp);
+
+      closeModal();
+    } catch (err) {
+      console.error("Error with adding new task: ", err.message);
     }
-
-    const id = Date.now().toString();
-
-    await setDoc(doc(db, "tasks", id), {
-      text: modalTaskInput.value,
-      date: new Date(timeStamp),
-      isCompleted: false,
-      id: id,
-    });
-
-    const newTaskEl = createTask(modalTaskInput.value, timeStamp, false, id);
-
-    if (!newTaskEl) {
-      throw new Error("Failed to create new task element");
-    }
-
-    distributeTask(newTaskEl, timeStamp);
-
-    closeModal();
-  } catch (err) {
-    console.error("Error with adding new task: ", err.message);
   }
-}
 
-submitBtn.addEventListener("click", addNewTask);
+  submitBtn.addEventListener("click", addNewTask);
+});

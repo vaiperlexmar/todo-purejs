@@ -41,8 +41,6 @@ const createAccount = async (event) => {
 
       const timestamp = Date.now().toString();
 
-      console.log(user);
-
       await setDoc(doc(db, "users", user.uid), {
         displayName: registrationName,
         dateOfRegistration: timestamp,
