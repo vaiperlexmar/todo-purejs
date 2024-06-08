@@ -37,14 +37,48 @@
         </div>
       </div>
 
-      <form action=""></form>
+      <form class="auth__form auth__form_register">
+        <input
+          type="text"
+          class="auth__input auth__name"
+          placeholder="Enter your fullname"
+          id="fullname"
+          required
+        />
+        <input
+          type="email"
+          class="auth__input auth__email"
+          placeholder="Enter your email"
+          id="email"
+          required
+        />
+        <input
+          type="password"
+          class="auth__input auth__password"
+          placeholder="Enter password"
+          id="password"
+          required
+        />
+        <input
+          type="password"
+          class="auth__input auth__confirm-password"
+          placeholder="Confirm password"
+          id="confirm-password"
+          required
+        />
+      </form>
 
-      <button class="btn btn_orange-gradient" id="get-start">
+      <button class="btn btn_orange-gradient auth__submit" id="get-start">
         Get Start
         <img class="btn__arrow" src="/src/assets/auth/arrow.svg" alt="" />
       </button>
+      <div class="auth__options">
+        <p class="auth__already-account">Already have an account?</p>
+        <button class="btn link link_orange auth__signin" data-value="register">
+          Sign In
+        </button>
+      </div>
     </div>
     <script type="module" src="/src/auth.js"></script>
-    <script type="module" src="/src/index.js"></script>
   </body>
 </html>

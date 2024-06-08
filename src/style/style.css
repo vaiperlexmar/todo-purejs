@@ -26,12 +26,14 @@
 
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 body {
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
   position: relative;
+  height: 100%;
 }
 
 .blur-filter {
@@ -94,7 +96,15 @@ body {
 .paragraph {
   font-size: var(--fs-7);
   letter-spacing: 0.06em;
-  color: rgba(0, 0, 0, 0.75);
+  color: var(--gray);
+}
+
+.link {
+  font-size: var(--fs-7);
+  letter-spacing: 0.06em;
+  color: var(--accent-orange);
+  text-decoration: none;
+  font-weight: 700;
 }
 
 /* Header */
@@ -410,12 +420,19 @@ body {
 }
 
 .auth__textbox {
-  margin-bottom: 11.9rem;
   padding: 0 4.7rem;
+}
+
+.welcome__text {
+  margin-bottom: 11.9rem;
 }
 
 .welcome__text .heading__secondary {
   margin-bottom: 2.4rem;
+}
+
+.registration__text {
+  margin-bottom: 1.7rem;
 }
 
 .registration__text,
@@ -425,4 +442,44 @@ body {
 
 .registration__text .heading__secondary {
   margin-bottom: 1.3rem;
+}
+
+.signin__text {
+  margin-bottom: 7rem;
+}
+
+.auth__form {
+  display: none;
+}
+
+.auth__form_register {
+  margin-bottom: 4.3rem;
+}
+
+.auth__input {
+  border-radius: 2.2rem;
+  font-size: 1.3rem;
+  line-height: 1.37;
+  display: block;
+  padding: 1.6rem 3rem;
+  width: 86.6%;
+  border: none;
+  margin: 0 auto 2rem;
+}
+
+.auth__submit {
+  margin-bottom: 2.1rem;
+}
+
+.auth__options {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.auth__already-account {
+  font-size: var(--fs-6);
+  line-height: 1.15;
+  letter-spacing: 0.06;
 }

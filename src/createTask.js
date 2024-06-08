@@ -1,7 +1,7 @@
 "use strict";
 
 import { doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
-import { db } from "./db.js";
+import { db } from "./setupFirebase.js";
 import distributeTask from "./distributeTask.js";
 
 async function deleteTask() {

@@ -1,6 +1,6 @@
 "use strict";
 
-import { db } from "./db";
+import { db } from "./setupFirebase";
 import { doc, setDoc } from "firebase/firestore/lite";
 import flatpickr from "flatpickr";
 import createTask from "./createTask";
