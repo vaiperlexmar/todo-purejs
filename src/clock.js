@@ -20,17 +20,13 @@ function clockAnimation() {
   }, 1000);
 }
 
-function runScriptOnTargetPage() {
-  const targetPath = "/app.html";
+function runClockOnTargetPage() {
+  const targetPath = "/app";
 
   if (window.location.pathname === targetPath) {
     clockAnimation();
   }
 }
-
-window.addEventListener("load", runScriptOnTargetPage);
-window.addEventListener("popstate", runScriptOnTargetPage);
-window.addEventListener("hashchange", runScriptOnTargetPage);
 
 const clockGreeting = document.querySelector(".clock__greeting");
 const todayTasksElement = document.querySelector(".sublist_today");
@@ -65,4 +61,4 @@ function greetingDefiner() {
   }
 }
 
-export { greetingDefiner };
+export { greetingDefiner, runClockOnTargetPage };

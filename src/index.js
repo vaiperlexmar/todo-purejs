@@ -2,7 +2,7 @@
 import { db, getTasks, auth } from "./setupFirebase";
 import createTask from "./createTask";
 import distributeTask from "./distributeTask";
-import { greetingDefiner } from "./clock";
+import { greetingDefiner, runClockOnTargetPage } from "./clock";
 
 auth.onAuthStateChanged(function (user) {
   if (user) {
@@ -23,6 +23,7 @@ auth.onAuthStateChanged(function (user) {
           greetingDefiner();
         });
       });
+      runClockOnTargetPage();
 
       const fullNameEl = document.querySelector(".profile__name");
 
