@@ -4,10 +4,12 @@ import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db, auth } from "./setupFirebase.js";
 import distributeTask from "./distributeTask.js";
 
+const userId =
+  auth.currentUser !== null ? auth.currentUser.uid : document.cookie.slice(7);
+
 async function deleteTask() {
   const task = this.parentElement.parentElement;
   try {
-    const userId = document.cookie.slice(7);
     await deleteDoc(doc(db, "users", userId, "tasks", task.dataset.id));
   } catch (err) {
     console.error("Error with deleting task:", err.message);
@@ -17,7 +19,13 @@ async function deleteTask() {
 
 const makeComplete = async function () {
   const taskEl = this.parentElement;
-  const taskRef = doc(db, "tasks", this.parentElement.dataset.id);
+  const taskRef = doc(
+    db,
+    "users",
+    userId,
+    "tasks",
+    this.parentElement.dataset.id
+  );
 
   try {
     if (this.checked) {
