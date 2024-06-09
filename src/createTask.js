@@ -1,13 +1,14 @@
 "use strict";
 
-import { doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
-import { db } from "./setupFirebase.js";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { db, auth } from "./setupFirebase.js";
 import distributeTask from "./distributeTask.js";
 
 async function deleteTask() {
   const task = this.parentElement.parentElement;
   try {
-    await deleteDoc(doc(db, "tasks", task.dataset.id));
+    const userId = document.cookie.slice(7);
+    await deleteDoc(doc(db, "users", userId, "tasks", task.dataset.id));
   } catch (err) {
     console.error("Error with deleting task:", err.message);
   }

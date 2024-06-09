@@ -66,35 +66,42 @@ auth.onAuthStateChanged((user) => {
     event.preventDefault();
 
     try {
-      const timestamp = new Date(
+      const timestampOfTask = new Date(
         datePickerEl.value + " " + timePickerEl.value
       ).getTime();
+      const timestampOfCreating = Date.now();
 
-      if (isNaN(timestamp)) {
+      if (isNaN(timestampOfTask)) {
         throw new Error("Invalid date or time input");
       }
 
-      const taskRef = doc(db, "users", user.uid, "tasks", timestamp.toString());
+      const taskRef = doc(
+        db,
+        "users",
+        user.uid,
+        "tasks",
+        String(timestampOfCreating)
+      );
 
       await setDoc(taskRef, {
         text: modalTaskInput.value,
-        date: new Date(timestamp),
+        date: new Date(timestampOfTask),
         isCompleted: false,
-        id: Date.now(),
+        id: String(timestampOfCreating),
       });
 
       const newTaskEl = createTask(
         modalTaskInput.value,
-        timestamp,
+        timestampOfTask,
         false,
-        Date.now()
+        String(timestampOfCreating)
       );
 
       if (!newTaskEl) {
         throw new Error("Failed to create new task element");
       }
 
-      distributeTask(newTaskEl, timestamp);
+      distributeTask(newTaskEl, timestampOfTask);
 
       closeModal();
     } catch (err) {
