@@ -25,14 +25,20 @@ auth.onAuthStateChanged(function (user) {
       });
       runClockOnTargetPage();
 
-      const fullNameEl = document.querySelector(".profile__name");
+      // =====================================
+      //      Fill personal information
+      // =====================================
 
+      const fullNameEl = document.querySelector(".profile__name");
       fullNameEl.textContent = user.displayName;
+      const usernameEl = document.querySelector(".profile__username");
+      usernameEl.textContent = "@" + user.displayName.trim().toLowerCase();
 
       const logoutButton = document.querySelector(".profile__logout");
 
       const logout = async () => {
         await auth.signOut();
+        document.cookie = "";
         if (window.location.pathname !== "/") {
           window.location.href = "/";
         }

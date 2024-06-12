@@ -87,7 +87,7 @@ const signIn = async (event) => {
     document.cookie = `userId=${user.uid}`;
     window.location.href = "/app";
   } catch (error) {
-    console.error("Sign In error:", error.message);
+    console.error(`Sign In error (error code: ${error.code}):`, error.message);
   }
 };
 
