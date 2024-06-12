@@ -311,6 +311,8 @@ body {
   line-height: 1.15;
   letter-spacing: 0.06;
   color: var(--gray);
+  word-wrap: break-word;
+  width: 60%;
 }
 
 .task__checkbox {
@@ -350,6 +352,14 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.task__input {
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid var(--gray);
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Modal */
