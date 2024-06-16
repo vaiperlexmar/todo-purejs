@@ -152,7 +152,7 @@ body {
   height: 40vw;
   /*to make the height and width responsive*/
   width: 40vw;
-  background: url("/src/assets/clock\ face.png") no-repeat;
+  background: url("/src/assets/clock-face.png") no-repeat;
   /*setting our background image*/
   background-size: 100%;
 }
